@@ -220,7 +220,7 @@ public class Lab1 {
 	 * @return true if (x, y) is inside the unit square, and false otherwise
 	 */
 	public static boolean isInsideUnitSquare(double x, double y) {
-		return (x <= 1) && (y <= 1) && (x >= 0) && (y >=0);
+		return (x <= 1) && (y <= 1) && (x >= 0) && (y >= 0);
 	}
 
 	/**
