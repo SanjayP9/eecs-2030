@@ -15,20 +15,20 @@ public class BMICalculator {
 			System.out.println("What is your name?");
 			String name = input.nextLine();
 			Person p = new Person(name);
-			
+
 			System.out.println("What is your weight in kilograms?");
 			/* You can assume user always enters weight in kg */
 			double weight = input.nextDouble();
 			input.nextLine();
-			
+
 			try {
 				p.setWeight(weight);
-				
+
 				System.out.println("What is your height in meters?");
 				/* You can assume user always enters weight in kg */
 				double height = input.nextDouble();
 				input.nextLine();
-				
+
 				try {
 					p.setHeight(height);
 					double bmi = p.getBMI();
@@ -37,12 +37,10 @@ public class BMICalculator {
 					System.out.println("Your height is " + p.getHeight() + " meters");
 					System.out.println("Your Body Mass Index is " + bmi);
 					System.out.println("This is considered " + p.getInterpretationOfBMI());
-				}
-				catch (IllegalArgumentException e) {
+				} catch (IllegalArgumentException e) {
 					System.out.println("Error: height is not positive!");
 				}
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				System.out.println("Error: weight is not positive!");
 			}
 			System.out.println("Do you want to continue?(Y/N)");

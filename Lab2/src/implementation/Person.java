@@ -1,9 +1,9 @@
 package implementation;
 
 /**
- * A Person class is used to calculate the BMI of a person given 
- * their weight and height. Height and weight is bounded from 
- * more than 0 to infinity
+ * A Person class is used to calculate the BMI of a person given their weight
+ * and height. Height and weight is bounded from more than 0 to infinity
+ * 
  * @author Sanjay
  *
  */
@@ -24,8 +24,11 @@ public class Person {
 	private double height;
 
 	/**
-	 * Initializes the Person class with the value of name provided by the controller
-	 * @param name Used to retrieve Person's name
+	 * Initializes the Person class with the value of name provided by the
+	 * controller
+	 * 
+	 * @param name
+	 *            Used to retrieve Person's name
 	 */
 	public Person(String name) {
 		this.name = name;
@@ -33,8 +36,11 @@ public class Person {
 
 	/**
 	 * Sets the classes weight value
-	 * @throws IllegalArgumentException when weight is not > 0
-	 * @param weight Sets weight of the Person
+	 * 
+	 * @throws IllegalArgumentException
+	 *             when weight is not > 0
+	 * @param weight
+	 *            Sets weight of the Person
 	 */
 	public void setWeight(double weight) {
 		if (weight > 0) {
@@ -45,9 +51,12 @@ public class Person {
 	}
 
 	/**
-	 * Sets the classes height value 
-	 * @throws IllegalArgumentException When the height of the Person is not > 0
-	 * @param height Sets the height of the Person
+	 * Sets the classes height value
+	 * 
+	 * @throws IllegalArgumentException
+	 *             When the height of the Person is not > 0
+	 * @param height
+	 *            Sets the height of the Person
 	 */
 	public void setHeight(double height) {
 		if (height > 0) {
@@ -58,7 +67,8 @@ public class Person {
 	}
 
 	/**
-	 * Used to access the name 
+	 * Used to access the name
+	 * 
 	 * @return Returns the Person's name value
 	 */
 	public String getName() {
@@ -67,6 +77,7 @@ public class Person {
 
 	/**
 	 * Used to access the classes height
+	 * 
 	 * @return Returns the Person's height value
 	 */
 	public double getHeight() {
@@ -75,6 +86,7 @@ public class Person {
 
 	/**
 	 * Used to access the classes weight
+	 * 
 	 * @return Returns the Person's weight value
 	 */
 	public double getWeight() {
@@ -83,6 +95,7 @@ public class Person {
 
 	/**
 	 * Used to calculate and return BMI
+	 * 
 	 * @return Returns Person's BMI value
 	 */
 	public double getBMI() {
@@ -90,7 +103,9 @@ public class Person {
 	}
 
 	/**
-	 * Based on the BMI of the Person this method returns what part of the scale they're  at
+	 * Based on the BMI of the Person this method returns what part of the scale
+	 * they're at
+	 * 
 	 * @return Returns the section of the scale that the Person is on
 	 */
 	public String getInterpretationOfBMI() {
