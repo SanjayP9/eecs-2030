@@ -41,17 +41,21 @@ public class Practice1A extends Object {
 
 		return result;
 	}
-	
+
 	public static String toString(List<Character> t) {
-		String temp = "";
-		for (int i = 0; i < t.size(); i++) {
-			temp += t.get(i);
+
+		if (t.isEmpty()) {
+			throw new IllegalArgumentException();
+		} else {
+
+			String temp = "";
+			for (int i = 0; i < t.size(); i++) {
+				temp += t.get(i);
+			}
+
+			return temp;
 		}
-
-		return temp;
 	}
-
-	
 
 	public static void main(String args[]) {
 		// List<Character> charList = repeatedChars("EECS2030");

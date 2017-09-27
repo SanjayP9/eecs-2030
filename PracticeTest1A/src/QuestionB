@@ -1,0 +1,17 @@
+Question 2
+A.
+The keyword final means that at runtime the value is stored and it cannot be changed later in the program
+
+B.
+a = ['g', 'o', 'o', 'd', 'b', 'y', 'e']
+b = 
+
+C.
+The precondition of this method is that it requires for a name to be passed through as a String parameter when the method is called.
+If I want to remove the precondition from this method I can do it by passing it through the constructor when an instance of Practice1A is 
+created in another class or if the name doesn't change I can store the name as a final Static String in the class and then call it in the method.
+
+D.
+1st test case would be to pass through an empty list to see if the program will throw the IllegalArgumentException.
+2nd test case would be just 1 character to test if the program doesn't break. This is because sometimes people expect for a regular input of multiple characters.
+3rd test case would test the example given which was ['g', 'o', 'o', 'd', 'b', 'y', 'e'].
