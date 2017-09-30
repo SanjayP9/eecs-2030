@@ -12,9 +12,9 @@ public class Person {
 	/**
 	 * Constants for denoting the values of each weight type
 	 */
-	private final double UNDERWEIGHT = 18.5;
-	private final double NORMAL = 25.0;
-	private final double OVERWEIGHT = 30.0;
+	private final double underweight = 18.5;
+	private final double normal = 25.0;
+	private final double overweight = 30.0;
 
 	/**
 	 * Variables that are used to store the name, weight and height of each Person
@@ -109,12 +109,12 @@ public class Person {
 	 * @return Returns the section of the scale that the Person is on
 	 */
 	public String getInterpretationOfBMI() {
-		double BMI = getBMI();
-		if (BMI < UNDERWEIGHT) {
+		double bmi = getBMI();
+		if (bmi < underweight) {
 			return "underweight";
-		} else if (BMI < NORMAL) {
+		} else if (bmi < normal) {
 			return "normal";
-		} else if (BMI < OVERWEIGHT) {
+		} else if (bmi < overweight) {
 			return "overweight";
 		}
 		return "obese";
