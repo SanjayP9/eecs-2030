@@ -108,7 +108,7 @@ public final class Complex {
 	 */
 	public Complex add(Complex c) {
 
-		return new Complex(c.re(), c.im());
+		return new Complex(c.re() + this.re, c.im() + this.im);
 	}
 
 	/**
@@ -127,7 +127,7 @@ public final class Complex {
 	 */
 	public Complex multiply(Complex c) {
 
-		return new Complex();
+		return new Complex(this.re * c.re() - this.im * c.im(), this.im * c.re() + this.re * c.im());
 	}
 
 	/**
@@ -137,7 +137,7 @@ public final class Complex {
 	 */
 	public double mag() {
 
-		return Math.sqrt(this.im*this.im + this.re*this.re);
+		return Math.hypot(this.re, this.im);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public final class Complex {
 	@Override
 	public int hashCode() {
 
-		return 0;
+		return (int) (this.re * 9999.0d + this.im * 99.0d);
 	}
 
 	/**
@@ -182,7 +182,8 @@ public final class Complex {
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj.getClass() == Complex.class && this.re == ((Complex) obj).re() && this.im == ((Complex) obj).im());
+		return (obj != null && obj.getClass() == Complex.class && this.re == ((Complex) obj).re()
+				&& this.im == ((Complex) obj).im());
 	}
 
 	/**
@@ -234,6 +235,20 @@ public final class Complex {
 		String t = s.trim();
 		List<String> parts = Arrays.asList(t.split("\\s+"));
 
+		if ((parts.size() == 3) && (parts.get(1).charAt(0) == '+' || parts.get(1).charAt(0) == '-')
+				&& (parts.get(2).charAt(parts.get(2).length() - 1) == 'i')) {
+
+			double realNum, imagNum;
+			realNum = Double.parseDouble(parts.get(0));
+			imagNum = Double.parseDouble(parts.get(2).substring(0, parts.get(2).length() - 1));
+
+			imagNum *= (parts.get(1).charAt(0) == '-') ? -1.0d : 1.0d;
+
+			return new Complex(realNum, imagNum);
+		} else {
+			throw new IllegalArgumentException();
+		}
+
 		// split splits the string s by looking for spaces in s.
 		// If s is a string that might be interpreted as a complex number
 		// then parts will be a list having 3 elements. The first
@@ -263,7 +278,22 @@ public final class Complex {
 		// -once you account for the sign, you can return the correct
 		// complex number
 
-		return result;
+	}
+
+	public static void main(String args[]) {
+		/*
+		 * String t = "0.0 + 0.0i"; t = t.trim();
+		 * 
+		 * List<String> parts = Arrays.asList(t.split("\\s+"));
+		 * 
+		 * System.out.println(parts); System.out.println(parts.get(1));
+		 * System.out.println(parts.get(1).charAt(0) == '+' || parts.get(1).charAt(0) ==
+		 * '-');
+		 */
+		System.out.println(Complex.valueOf("-1.23456789 + 99.9999i"));
+		Double imagNum = Double.parseDouble("99.9999i".substring(0, "99.9999i".length() - 1));
+		System.out.println(imagNum);
+
 	}
 
 }
