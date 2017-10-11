@@ -236,7 +236,7 @@ public final class Complex {
 		List<String> parts = Arrays.asList(t.split("\\s+"));
 
 		if ((parts.size() == 3) && (parts.get(1).charAt(0) == '+' || parts.get(1).charAt(0) == '-')
-				&& (parts.get(2).charAt(parts.get(2).length() - 1) == 'i')) {
+				&& (parts.get(2).endsWith("i"))) {
 
 			double realNum, imagNum;
 			realNum = Double.parseDouble(parts.get(0));
