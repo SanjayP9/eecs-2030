@@ -288,8 +288,8 @@ public class Die {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null && obj.getClass() == Die.class
-				&& this.valueMap.equals(((Die) obj).getValueMap())
-				&& this.valueMap.equals(((Die) obj).getValueMap()));
+				&& ((Die) (obj)).getValueMap().keySet().equals(this.valueMap.keySet())
+				&& ((Die) (obj)).getValueMap().values().equals(this.valueMap.values()));
 	}
 
 	/**
