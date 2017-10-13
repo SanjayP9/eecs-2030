@@ -287,9 +287,20 @@ public class Die {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return (obj != null && obj.getClass() == Die.class
-				&& ((Die) (obj)).getValueMap().keySet().equals(this.valueMap.keySet())
-				&& ((Die) (obj)).getValueMap().values().equals(this.valueMap.values()));
+		if (obj != null && obj.getClass() == Die.class)
+		{
+			String[] tempVal1, tempVal2;
+
+			tempVal1 = this.valueMap.values().toArray(new String[this.valueMap.values().size()]);
+			tempVal2 = ((Die) (obj)).getValueMap().values()
+					.toArray(new String[((Die) (obj)).getValueMap().values().size()]);
+			
+			return (tempVal1.length == tempVal2.length && tempVal1.equals(tempVal2));
+			
+		}
+
+	return false;
+
 	}
 
 	/**
