@@ -79,16 +79,7 @@ public class Dictionary {
 	 *         the specified string
 	 */
 	public SortedSet<String> wordsStartingWith(String prefix) {
-		
-		SortedSet<String> temp = new TreeSet<String>();
-		
-		
-		for (int i =0; i < temp.size();i++)
-		{
-			
-		}
-		
-		return this.words.tailSet(prefix.toLowerCase());
+		return this.words.subSet(prefix, prefix + Character.MAX_VALUE);
 	}
 
 }

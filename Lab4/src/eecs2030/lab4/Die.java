@@ -2,6 +2,7 @@ package eecs2030.lab4;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.SortedMap;
@@ -55,7 +56,7 @@ public class Die {
 
 	private SortedMap<Integer, String> valueMap = new TreeMap<Integer, String>();
 	private static Random rng = new Random();
-	private int currDieVal = -1;
+	public int currDieVal = -1;
 
 	/**
 	 * Initializes an n-sided die where the sides are decorated with the strings in
@@ -100,6 +101,8 @@ public class Die {
 		for (int i = 0; i < faces.length; i++) {
 			this.valueMap.put(i + 1, faces[i]);
 		}
+		
+		roll();
 
 	}
 
@@ -114,7 +117,8 @@ public class Die {
 	 *            the die to copy
 	 */
 	public Die(Die other) {
-		this(other.getValueMap().values().toArray(new String[other.getValueMap().size()]));
+		this.valueMap = other.getValueMap();
+		this.currDieVal = other.currDieVal;
 	}
 
 	/**
@@ -146,8 +150,16 @@ public class Die {
 	 */
 	public String getValue() {
 
-		return (this.currDieVal == -1) ? this.valueMap.get(rng.nextInt(this.valueMap.keySet().size()) + 1)
-				: valueMap.get(this.currDieVal);
+		if (this.currDieVal == -1) {
+			this.roll();
+		}
+		return this.valueMap.get(this.currDieVal);
+
+		/*
+		 * return (this.currDieVal == -1) ?
+		 * this.valueMap.get(rng.nextInt(this.valueMap.keySet().size()) + 1) :
+		 * valueMap.get(this.currDieVal);
+		 */
 
 	}
 
@@ -287,19 +299,26 @@ public class Die {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj != null && obj.getClass() == Die.class)
-		{
-			String[] tempVal1, tempVal2;
+		if (obj != null && obj.getClass() == Die.class) {
 
-			tempVal1 = this.valueMap.values().toArray(new String[this.valueMap.values().size()]);
-			tempVal2 = ((Die) (obj)).getValueMap().values()
-					.toArray(new String[((Die) (obj)).getValueMap().values().size()]);
-			
-			return (tempVal1.length == tempVal2.length && tempVal1.equals(tempVal2));
-			
+			if (this.valueMap.size() == ((Die) (obj)).getValueMap().size()) {
+
+				List<String> tempVal1 = new ArrayList<String>();
+				List<String> tempVal2 = new ArrayList<String>();
+
+				for (int i = 0; i < this.valueMap.size(); i++) {
+					tempVal1.add(this.valueMap.get(i + 1));
+					tempVal2.add(((Die) (obj)).getValueMap().get(i + 1));
+				}
+
+				Collections.sort(tempVal1);
+				Collections.sort(tempVal2);
+
+				return (tempVal1.equals(tempVal2) && (this.getValue().equals(((Die) (obj)).getValue())));
+			}
 		}
 
-	return false;
+		return false;
 
 	}
 
@@ -329,14 +348,35 @@ public class Die {
 		String result = "";
 
 		for (int i = 0; i < this.valueMap.keySet().size(); i++) {
-			result += (i != this.valueMap.keySet().size() - 1) ? this.valueMap.get(i) + ", " : this.valueMap.get(i);
+			result += (i != this.valueMap.keySet().size() - 1) ? this.valueMap.get(i + 1) + ", "
+					: this.valueMap.get(i + 1);
 		}
 		return result;
 	}
 
 	/*
-	 * public static void main(String[] args) throws IOException { while (true) {
-	 * System.out.println(rng.nextInt(5)+1); System.in.read(); } }
+	 * public static void main(String[] args) throws IOException {
+	 * 
+	 * List<String> faces = new ArrayList<String>();
+	 * 
+	 * faces.add("A"); faces.add("B"); faces.add("C"); faces.add("D");
+	 * faces.add("E"); faces.add("F"); faces.add("G");
+	 * 
+	 * 
+	 * List<String> faces2 = new ArrayList<String>();
+	 * 
+	 * faces2.add("C"); faces2.add("B"); faces2.add("A"); faces2.add("D");
+	 * faces2.add("E"); faces2.add("F"); faces2.add("G");
+	 * 
+	 * 
+	 * 
+	 * Die d = new Die(faces.toArray(new String[faces.size()])); Die d2 = new
+	 * Die(faces2.toArray(new String[faces2.size()]));
+	 * 
+	 * 
+	 * System.out.println(d.equals(d2)); System.out.println(faces.equals(faces2));
+	 * 
+	 * }
 	 */
 
 }
