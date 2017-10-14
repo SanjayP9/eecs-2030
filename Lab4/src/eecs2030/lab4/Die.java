@@ -154,13 +154,6 @@ public class Die {
 			this.roll();
 		}
 		return this.valueMap.get(this.currDieVal);
-
-		/*
-		 * return (this.currDieVal == -1) ?
-		 * this.valueMap.get(rng.nextInt(this.valueMap.keySet().size()) + 1) :
-		 * valueMap.get(this.currDieVal);
-		 */
-
 	}
 
 	/**
@@ -353,30 +346,5 @@ public class Die {
 		}
 		return result;
 	}
-
-	/*
-	 * public static void main(String[] args) throws IOException {
-	 * 
-	 * List<String> faces = new ArrayList<String>();
-	 * 
-	 * faces.add("A"); faces.add("B"); faces.add("C"); faces.add("D");
-	 * faces.add("E"); faces.add("F"); faces.add("G");
-	 * 
-	 * 
-	 * List<String> faces2 = new ArrayList<String>();
-	 * 
-	 * faces2.add("C"); faces2.add("B"); faces2.add("A"); faces2.add("D");
-	 * faces2.add("E"); faces2.add("F"); faces2.add("G");
-	 * 
-	 * 
-	 * 
-	 * Die d = new Die(faces.toArray(new String[faces.size()])); Die d2 = new
-	 * Die(faces2.toArray(new String[faces2.size()]));
-	 * 
-	 * 
-	 * System.out.println(d.equals(d2)); System.out.println(faces.equals(faces2));
-	 * 
-	 * }
-	 */
 
 }
