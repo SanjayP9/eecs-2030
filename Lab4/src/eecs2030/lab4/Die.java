@@ -101,7 +101,7 @@ public class Die {
 		for (int i = 0; i < faces.length; i++) {
 			this.valueMap.put(i + 1, faces[i]);
 		}
-		
+
 		roll();
 
 	}

@@ -41,9 +41,9 @@ public class Boggle {
 	public Boggle() {
 		dictionary = new Dictionary();
 		dice = new ArrayList<Die>();
-		
+
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
-				dice.add(new Die(LETTERS[i]));
+			dice.add(new Die(LETTERS[i]));
 		}
 	}
 
@@ -64,8 +64,13 @@ public class Boggle {
 	 *         the dice in the list does not modify the state of the Boggle dice
 	 */
 	public List<Die> getDice() {
-		shuffleAndRoll();
-		return new ArrayList<Die>(this.dice);
+		List<Die> temp = new ArrayList<Die>();
+
+		for (int i = 0; i < this.NUMBER_OF_DICE; i++) {
+			temp.add(new Die(this.dice.get(i)));
+		}
+
+		return temp;
 	}
 
 	/**
@@ -79,6 +84,10 @@ public class Boggle {
 	 */
 	public void shuffleAndRoll() {
 		Collections.shuffle(this.dice);
+
+		for (Die i : this.dice) {
+			i.roll();
+		}
 	}
 
 	/**
