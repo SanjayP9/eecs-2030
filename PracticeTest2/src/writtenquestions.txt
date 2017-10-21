@@ -1,0 +1,49 @@
+A.
+An obligatory method is a method that is from the java.lang.Object class such as toString(), hashCode() and equals().
+When used in a class they are overridden from the original java.lang.Object class in order to be implemented properly
+with whatever class the object is being used for.
+
+B.
+A class invariant is something that must always be true in the class. For example if the Integer count needs to be
+always more than or equal to 0 the constructor and mutator methods cant change the value of the Integer to anything
+less than 0.
+
+C.
+A static method can only use static fields. This is because a non-static field belongs to an instance and static fields
+can be used without an instance.
+
+D.
+A non-static method can use static and non-static fields because non-static fields can only be used with instances of
+a class and static fields can be used with non-static methods since they can be accessed from non-static methods.
+
+E.
+The hashCode() method is an obligatory method that is used to generate a hashCode integer which will be used to
+determine which "bucket" the object will be sorted into. The hashcode is used for data structures such as treesets and
+treemaps in order to find where the object is sorted
+
+F.
+compareTo() method is used to compare two objects which have some way to sort them and compare their states. For example
+this can be used for Strings to compare theri contents alphabetically and it can also be used for a Double to find out
+which double is bigger than, equal to or less than the other.
+
+G.
+a)
+We cant use both of these constructors because both of them have the same signature. Both of them have one Double as
+a parameter resulting in both of them having the same signature.
+b)
+Instead 1 constructor can be used which has 1 double and 1 string as the parameter. The string will record which units
+that the weight double is in.
+
+H.
+compareTo will be consistent with equals with the Weight when they are both equal to each other and equals returns true
+the compareTo method will return a zero. However when compareTo does not return a zero the equals will return a false.
+
+I.
+Instead of storing them in doubles i would just do return Double.compare(this.getTemperature(), other.getTemperature());
+
+J.
+1. The object cant be null and does not throw an exception
+2. The object must be of the same class
+3. The object must have the same states as the instance that its being compared to
+4. An instance must be able to be equal to itself
+5. Instances of the same type are equal
