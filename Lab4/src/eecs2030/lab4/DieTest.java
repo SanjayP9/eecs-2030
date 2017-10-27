@@ -45,10 +45,7 @@ public class DieTest {
 
 	@Test
 	public void test02_getNumberOfFaces() {
-		final String[][] FACES = { 
-				{ "hi" }, 
-				{ "hi", "bye" }, 
-				{ "bat", "cat", "hat" },
+		final String[][] FACES = { { "hi" }, { "hi", "bye" }, { "bat", "cat", "hat" },
 				{ "bungie", "bethesda", "id", "pavonis", "eidos", "fromsoft" } };
 		for (int i = 0; i < FACES.length; i++) {
 			Die d = new Die(FACES[i]);
@@ -166,17 +163,13 @@ public class DieTest {
 			// make an n-sided die
 			String[] faces = makeFaces(n);
 			Die d = new Die(faces);
-			
-			assertTrue("die should be equal to itself",
-					d.equals(d));
-			assertFalse("die should not be equal to null", 
-					d.equals(null));
-			assertFalse("die should not be equal to a String", 
-					d.equals("hello"));
+
+			assertTrue("die should be equal to itself", d.equals(d));
+			assertFalse("die should not be equal to null", d.equals(null));
+			assertFalse("die should not be equal to a String", d.equals("hello"));
 		}
 	}
-	
-	
+
 	@Test
 	public void test08_equals() {
 		for (int n = 2; n <= 10; n++) {
@@ -185,69 +178,69 @@ public class DieTest {
 			List<String> faceList = Arrays.asList(faces);
 			Collections.shuffle(faceList);
 			Die d1 = new Die(faces);
-			
+
 			faces = makeFaces(n);
 			Die d2 = new Die(faces);
-			
+
 			while (!d1.getValue().equals(d2.getValue())) {
 				d1.roll();
 				if (d1.getValue().equals(d2.getValue())) {
-					assertEquals("d1 and d2 have same values but equals returned false",
-							d1, d2);
-				}
-				else {
-					assertNotEquals("d1 and d2 have different values but equals returned true", 
-							d1, d2);
+					assertEquals("d1 and d2 have same values but equals returned false", d1, d2);
+				} else {
+					assertNotEquals("d1 and d2 have different values but equals returned true", d1, d2);
 				}
 			}
 		}
 	}
-	
-	
+
 	@Test
 	public void test09_equals() {
-		for (int n = 2; n <= 10; n++) {
+		for (int n = 6; n <= 6; n++) {
 			// make 2 n-sided dice with different faces
 			String[] faces = makeFaces(n);
 			List<String> faceList = Arrays.asList(faces);
 			Collections.shuffle(faceList);
 			Die d1 = new Die(faces);
-			
+
 			faces = makeFaces(n);
 			faces[0] = faces[0] + "*";
 			Die d2 = new Die(faces);
-			
+
 			for (int i = 0; i < 100; i++) {
 				d1.roll();
-				assertNotEquals("d1 and d2 have different faces but equals returned true",
-							d1, d2);
+				d2.roll();
+				assertNotEquals("d1 and d2 have different faces but equals returned true", d1, d2);
 			}
 		}
 	}
-	
-	@Test
+
 	public void test10_equals() {
-		final String[][] FACES = { 
-				{ "hi" }, 
-				{ "hi", "bye" }, 
-				{ "bat", "cat", "hat" },
-				{ "bungie", "bethesda", "id", "pavonis", "eidos", "fromsoft" }
-		};
-		final String[] EXP = {
-				"hi",
-				"hi, bye",
-				"bat, cat, hat",
-				"bungie, bethesda, id, pavonis, eidos, fromsoft"
-		};
-		for (int i = 0; i < FACES.length; i++) {
-			Die d = new Die(FACES[i]);
-			assertEquals("toString returned the wrong string",
-					EXP[i],
-					d.toString());
+		String[][] faces = { { "A", "B" }, { "A", "B", "A" }, { "X", "Y", "Y", "Z" }, { "G", "H", "I", "J", "G" },
+				{ "L", "M", "N", "N", "O", "P" } };
+		String[][] faces2 = { { "A", "A" }, { "A", "B", "B" }, { "X", "X", "Y", "Z" }, { "G", "H", "I", "J", "J" },
+				{ "L", "M", "N", "L", "O", "P" } };
+		for (int i = 0; i < faces.length; i++) {
+			Die d1 = new Die(faces[i]);
+			Die d2 = new Die(faces2[i]);
+			for (int j = 0; j < 100; j++) {
+				d1.roll();
+				d2.roll();
+				assertNotEquals("d1 and d2 have different faces but equals returned true", d1, d2);
+			}
 		}
 	}
-	
-	
+
+	@Test
+	public void test11_toString() {
+		final String[][] FACES = { { "hi" }, { "hi", "bye" }, { "bat", "cat", "hat" },
+				{ "bungie", "bethesda", "id", "pavonis", "eidos", "fromsoft" } };
+		final String[] EXP = { "hi", "hi, bye", "bat, cat, hat", "bungie, bethesda, id, pavonis, eidos, fromsoft" };
+		for (int i = 0; i < FACES.length; i++) {
+			Die d = new Die(FACES[i]);
+			assertEquals("toString returned the wrong string", EXP[i], d.toString());
+		}
+	}
+
 	@Test
 	public void test12_copyCtor() {
 		for (int n = 2; n <= 10; n++) {
@@ -256,10 +249,9 @@ public class DieTest {
 			List<String> faceList = Arrays.asList(faces);
 			Collections.shuffle(faceList);
 			Die d1 = new Die(faces);
-			
+
 			Die d2 = new Die(d1);
-			assertEquals("copy constructor did not create an equal die",
-					d1, d2);
+			assertEquals("copy constructor did not create an equal die", d1, d2);
 		}
 	}
 }
