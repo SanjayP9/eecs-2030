@@ -110,9 +110,7 @@ public class LinkedIntList {
 	 * @return the number of elements in this list
 	 */
 	public int size() {
-		
-		
-		return 0;
+		return this.size;
 	}
 	
 	
@@ -122,9 +120,7 @@ public class LinkedIntList {
 	 * @return true if the size of this list is zero, and false otherwise
 	 */
 	public boolean isEmpty() {
-		
-		
-		return true;
+		return (size == 0);
 	}
 	
 	
@@ -164,7 +160,12 @@ public class LinkedIntList {
 	 *             list
 	 */
 	public Node getNode(int index) {
+		if (index>=this.size||index<0)
+		{
+			throw new IndexOutOfBoundsException();
+		}
 		
+		//iterate through ll and get node
 		
 		
 		return null;
