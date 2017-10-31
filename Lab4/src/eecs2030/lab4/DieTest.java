@@ -214,6 +214,7 @@ public class DieTest {
 		}
 	}
 
+	@Test
 	public void test10_equals() {
 		String[][] faces = { { "A", "B" }, { "A", "B", "A" }, { "X", "Y", "Y", "Z" }, { "G", "H", "I", "J", "G" },
 				{ "L", "M", "N", "N", "O", "P" } };
