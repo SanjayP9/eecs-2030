@@ -7,9 +7,9 @@ import java.util.NoSuchElementException;
  * to represent nodes of this list.
  * 
  * <p>
- * This implementation keeps track of the first (head) and last (tail) node
- * of the linked list. All methods that add or remove nodes from the list
- * may have to update the fields this.head, this.tail, and this.size
+ * This implementation keeps track of the first (head) and last (tail) node of
+ * the linked list. All methods that add or remove nodes from the list may have
+ * to update the fields this.head, this.tail, and this.size
  */
 public class LinkedIntList {
 
@@ -30,8 +30,8 @@ public class LinkedIntList {
 	 * Returns a reference to the first node of the list (the head node).
 	 * 
 	 * <p>
-	 * NOTE: This method causes a privacy leak and would not normally be
-	 * part of the public API; however, it is useful for testing purposes.
+	 * NOTE: This method causes a privacy leak and would not normally be part of the
+	 * public API; however, it is useful for testing purposes.
 	 * 
 	 * @return a reference to the first node of the list
 	 */
@@ -43,8 +43,8 @@ public class LinkedIntList {
 	 * Returns a reference to the last node of the list (the tail node).
 	 * 
 	 * <p>
-	 * NOTE: This method causes a privacy leak and would not normally be
-	 * part of the public API; however, it is useful for testing purposes.
+	 * NOTE: This method causes a privacy leak and would not normally be part of the
+	 * public API; however, it is useful for testing purposes.
 	 * 
 	 * @return a reference to the last node of the list
 	 */
@@ -53,12 +53,14 @@ public class LinkedIntList {
 	}
 
 	/**
-	 * Throws an IndexOutOfBoundsException exception if idx is less
-	 * than zero or greater than (this.size - 1)
+	 * Throws an IndexOutOfBoundsException exception if idx is less than zero or
+	 * greater than (this.size - 1)
 	 * 
-	 * @param idx an index to check
-	 * @throws IndexOutOfBoundsException exception if idx is less
-	 * than zero or greater than (this.size - 1)
+	 * @param idx
+	 *            an index to check
+	 * @throws IndexOutOfBoundsException
+	 *             exception if idx is less than zero or greater than (this.size -
+	 *             1)
 	 */
 	private void checkIndex(int idx) {
 		if (idx < 0 || idx > this.size - 1) {
@@ -69,7 +71,8 @@ public class LinkedIntList {
 	/**
 	 * Throws a NoSuchElementException if the list is empty.
 	 * 
-	 * @throws NoSuchElementException if the list is empty
+	 * @throws NoSuchElementException
+	 *             if the list is empty
 	 */
 	private void checkNotEmpty() {
 		if (this.isEmpty()) {
@@ -77,10 +80,9 @@ public class LinkedIntList {
 		}
 	}
 
-	
 	/**
-	 * Returns a string representation of this list similar to the string
-	 * returned by java.util.List.toString.
+	 * Returns a string representation of this list similar to the string returned
+	 * by java.util.List.toString.
 	 * 
 	 * @return a string representation of this list
 	 */
@@ -95,14 +97,12 @@ public class LinkedIntList {
 				b.append(n.getData());
 				n = n.getNext();
 			}
-		}
-		else {
+		} else {
 			b.append("empty");
 		}
 		b.append("]");
 		return b.toString();
 	}
-
 
 	/**
 	 * Returns the number of elements in this list.
@@ -112,8 +112,7 @@ public class LinkedIntList {
 	public int size() {
 		return this.size;
 	}
-	
-	
+
 	/**
 	 * Returns true if the size of this list is zero, and false otherwise.
 	 * 
@@ -122,10 +121,7 @@ public class LinkedIntList {
 	public boolean isEmpty() {
 		return (size == 0);
 	}
-	
-	
 
-	
 	/**
 	 * Add an element to the end of this linked list.
 	 * 
@@ -134,23 +130,21 @@ public class LinkedIntList {
 	 * @return true (to be consistent with java.util.Collection)
 	 */
 	public boolean add(int elem) {
-		
 
 		return true;
 	}
-	
-	
+
 	/**
 	 * Returns the node at the given index.
 	 * 
 	 * <p>
-	 * NOTE: This method is extremely useful for implementing many of the methods
-	 * of this class, but students should try to use this method only once in each
+	 * NOTE: This method is extremely useful for implementing many of the methods of
+	 * this class, but students should try to use this method only once in each
 	 * method.
 	 * 
 	 * <p>
-	 * NOTE: This method causes a privacy leak and would not normally be
-	 * part of the public API; however, it is useful for testing purposes.
+	 * NOTE: This method causes a privacy leak and would not normally be part of the
+	 * public API; however, it is useful for testing purposes.
 	 * 
 	 * @param index
 	 *            the index of the node
@@ -160,17 +154,18 @@ public class LinkedIntList {
 	 *             list
 	 */
 	public Node getNode(int index) {
-		if (index>=this.size||index<0)
-		{
+		if (index >= this.size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		
-		//iterate through ll and get node
-		
-		
-		return null;
-	}
 
+		Node temp = this.head;
+
+		for (int i = 0; i < index; i++) {
+			temp = temp.getNext();
+		}
+
+		return temp;
+	}
 
 	/**
 	 * Get the element stored at the given index in this linked list.
@@ -182,10 +177,11 @@ public class LinkedIntList {
 	 *             if (index &lt; 0) || (index &gt; size - 1)
 	 */
 	public int get(int index) {
-		
-		
-		
-		return 0;
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		return getNode(index).getData();
 	}
 
 	/**
@@ -201,10 +197,26 @@ public class LinkedIntList {
 	 *             if (index &lt; 0) || (index &gt; size - 1)
 	 */
 	public int set(int index, int elem) {
+
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Node temp = this.head;
+
+		for (int i = 0; i < index - 1; i++) {
+			temp = temp.getNext();
+		}
+
+		int result;
 		
-		
-		
-		return 0;
+		if (temp.getNext().equals(null)) {
+			temp.setNext(new Node(elem, null));
+		} else {
+			temp.getNext().setData(elem);
+		}
+
+		return ;
 	}
 
 	/**
@@ -214,9 +226,7 @@ public class LinkedIntList {
 	 *            the element to insert at the front of this list
 	 */
 	public void addFirst(int elem) {
-		
-		
-		
+
 	}
 
 	/**
@@ -238,9 +248,7 @@ public class LinkedIntList {
 	 *             if the index is out of range (index &lt; 0 || index &gt; size())
 	 */
 	public void add(int index, int elem) {
-		
-		
-		
+
 	}
 
 	/**
@@ -251,8 +259,7 @@ public class LinkedIntList {
 	 *             if this list is empty
 	 */
 	public int removeFirst() {
-		
-		
+
 		return 0;
 	}
 
@@ -264,8 +271,7 @@ public class LinkedIntList {
 	 *             if this list is empty
 	 */
 	public int removeLast() {
-		
-		
+
 		return 0;
 	}
 
@@ -275,29 +281,29 @@ public class LinkedIntList {
 	 * the element that was removed from the list.
 	 * 
 	 * <p>
-	 * <code>t.remove(0)</code> is equivalent to <code>t.removeFirst()</code>
-	 * except that a different exception might be thrown.
+	 * <code>t.remove(0)</code> is equivalent to <code>t.removeFirst()</code> except
+	 * that a different exception might be thrown.
 	 * 
 	 * <p>
-	 * <code>t.remove(t.size() - 1)</code> is equivalent to <code>t.removeLast()</code>
-	 * except that a different exception might be thrown.
+	 * <code>t.remove(t.size() - 1)</code> is equivalent to
+	 * <code>t.removeLast()</code> except that a different exception might be
+	 * thrown.
 	 * 
-	 * @param index the index of the element to be removed
+	 * @param index
+	 *            the index of the element to be removed
 	 * @return the removed element
 	 * @throws IndexOutOfBoundsException
-	 *          if the index is out of range (index &lt; 0 || index &gt;= size())
+	 *             if the index is out of range (index &lt; 0 || index &gt;= size())
 	 */
 	public int remove(int index) {
-		
-		
+
 		return 0;
 	}
 
-	
 	/**
 	 * Circularly shifts the elements of this list to the right by n positions
-	 * causing the n elements at the end of the original list to appear at
-	 * the front of the resulting list. For example, if <code>t</code> is the list:
+	 * causing the n elements at the end of the original list to appear at the front
+	 * of the resulting list. For example, if <code>t</code> is the list:
 	 * 
 	 * <pre>
 	 * [0, 1, 2, 3, 4, 5]
@@ -314,13 +320,12 @@ public class LinkedIntList {
 	 * <code>t.shiftRight(0)</code> and <code>t.shiftRight(t.size())</code> both
 	 * leave <code>t</code> unchanged.
 	 * 
-	 * @param n the number of positions to shift the elements
+	 * @param n
+	 *            the number of positions to shift the elements
 	 * @throws IllegalArgumentException
-	 *          if n is out of range (n &lt; 0 || n &gt; size())
+	 *             if n is out of range (n &lt; 0 || n &gt; size())
 	 */
 	public void shiftRight(int n) {
-		
-		
-		
+
 	}
 }
