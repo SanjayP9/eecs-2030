@@ -208,15 +208,17 @@ public class LinkedIntList {
 			temp = temp.getNext();
 		}
 
-		int result;
-		
+		int result = 0;
+
 		if (temp.getNext().equals(null)) {
+
 			temp.setNext(new Node(elem, null));
 		} else {
+			result = temp.getNext().getData();
 			temp.getNext().setData(elem);
 		}
 
-		return ;
+		return result;
 	}
 
 	/**
@@ -226,7 +228,7 @@ public class LinkedIntList {
 	 *            the element to insert at the front of this list
 	 */
 	public void addFirst(int elem) {
-
+		this.head = new Node(elem, this.head);
 	}
 
 	/**
@@ -248,7 +250,22 @@ public class LinkedIntList {
 	 *             if the index is out of range (index &lt; 0 || index &gt; size())
 	 */
 	public void add(int index, int elem) {
+		
+		if (index < 0 || index > size()) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		Node nodeToMove, newNode; // store whatever is at index
 
+		newNode = this.head;
+
+		for (int i = 0; i < index - 1; i++) {
+			newNode = newNode.getNext();
+		}
+
+		nodeToMove = newNode.getNext();
+
+		newNode.setNext(new Node(elem, nodeToMove));
 	}
 
 	/**
@@ -259,8 +276,17 @@ public class LinkedIntList {
 	 *             if this list is empty
 	 */
 	public int removeFirst() {
-
-		return 0;
+		
+		if (this.size == 0)
+		{
+			throw new NoSuchElementException();
+		}
+		
+		int result = this.head.getData();
+		
+		this.head = this.head.getNext();
+		
+		return result;
 	}
 
 	/**
