@@ -110,7 +110,7 @@ public final class RecursiveTasks {
             return true;
         } else if (str.length() % 2 != 0) {
             return false;
-        } else if (str.startsWith("(") && str.endsWith(")") ) {
+        } else if (str.startsWith("(") && str.endsWith(")")) {
             return parenthIsNested(str.substring(1, str.length() - 1));
         }
 
@@ -151,9 +151,38 @@ public final class RecursiveTasks {
     public static void genFractal(List<Circle> circles, int x, int y, int radius, int n, boolean[] mode) {
 
         // CODE HERE
+        if (n == 0) {
+            return;
+        } else {
+            if (mode[0]) // left
+            {
+                drawCircles(circles, x, y, radius);
+                genFractal(circles, x - radius, y, radius / 2, n - 1, mode);
+            }
+            if (mode[1]) // right
+            {
+                drawCircles(circles, x, y, radius);
+                genFractal(circles, x + radius, y, radius / 2, n - 1, mode);
+            }
+            if (mode[2]) // up
+            {
+                drawCircles(circles, x, y, radius);
+                genFractal(circles, x, y + radius, radius / 2, n - 1, mode);
+            }
+            if (mode[3]) // down
+            {
+                drawCircles(circles, x, y, radius);
+                genFractal(circles, x, y - radius, radius / 2, n - 1, mode);
+            }
 
-        return;
+        }
+    }
 
+    private static void drawCircles(List<Circle> circles, int x, int y, int radius) {
+        circles.add(new Circle(x - radius, y, radius / 2));
+        circles.add(new Circle(x + radius, y, radius / 2));
+        circles.add(new Circle(x, y - radius, radius / 2));
+        circles.add(new Circle(x, y + radius, radius / 2));
     }
 
 
@@ -182,14 +211,18 @@ public final class RecursiveTasks {
      */
     public static boolean sumSome(int index, int[] nums, int sum, int target) {
 
+        if (sum == target) {
+            return true;
+        } else if (index == nums.length) {
+            return false;
+        }
 
-        return false;
     }
 
     public static void main(String[] args) {
-        String str = "hello";
+        int[] nums = {2,4,8};
 
-        System.out.println(str.substring(1, str.length() - 1));
+        System.out.println(sumSome(0,nums, 0, 9));
     }
 
 
