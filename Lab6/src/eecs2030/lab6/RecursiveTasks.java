@@ -211,19 +211,17 @@ public final class RecursiveTasks {
      */
     public static boolean sumSome(int index, int[] nums, int sum, int target) {
 
-        if (sum == target) {
+        if (nums.length == 1) {
+            return (nums[0] == target);
+        }
+        if (nums[nums.length - 1] == target || sum == target) {
             return true;
-        } else if (index == nums.length) {
+        }
+        if (index == nums.length) {
             return false;
         }
 
+        return sumSome(index + 1, nums, sum + nums[index], target) || sumSome(index + 1, nums, sum, target);
+
     }
-
-    public static void main(String[] args) {
-        int[] nums = {2,4,8};
-
-        System.out.println(sumSome(0,nums, 0, 9));
-    }
-
-
 }
