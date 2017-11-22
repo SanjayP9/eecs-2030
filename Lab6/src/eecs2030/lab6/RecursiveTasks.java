@@ -154,37 +154,29 @@ public final class RecursiveTasks {
         if (n == 0) {
             return;
         } else {
+            circles.add(new Circle(x - radius, y, radius / 2));
             if (mode[0]) // left
             {
-                drawCircles(circles, x, y, radius);
                 genFractal(circles, x - radius, y, radius / 2, n - 1, mode);
             }
+            circles.add(new Circle(x + radius, y, radius / 2));
             if (mode[1]) // right
             {
-                drawCircles(circles, x, y, radius);
                 genFractal(circles, x + radius, y, radius / 2, n - 1, mode);
             }
+            circles.add(new Circle(x, y + radius, radius / 2));
             if (mode[2]) // up
             {
-                drawCircles(circles, x, y, radius);
                 genFractal(circles, x, y + radius, radius / 2, n - 1, mode);
             }
+            circles.add(new Circle(x, y - radius, radius / 2));
             if (mode[3]) // down
             {
-                drawCircles(circles, x, y, radius);
                 genFractal(circles, x, y - radius, radius / 2, n - 1, mode);
             }
 
         }
     }
-
-    private static void drawCircles(List<Circle> circles, int x, int y, int radius) {
-        circles.add(new Circle(x - radius, y, radius / 2));
-        circles.add(new Circle(x + radius, y, radius / 2));
-        circles.add(new Circle(x, y - radius, radius / 2));
-        circles.add(new Circle(x, y + radius, radius / 2));
-    }
-
 
     /**
      * Calculate and determine if there exists a sum of (some) of the elements in an integer
@@ -214,7 +206,7 @@ public final class RecursiveTasks {
         if (nums.length == 1) {
             return (nums[0] == target);
         }
-        if (nums[nums.length - 1] == target || sum == target) {
+        if ((nums.length > 0 && nums[nums.length - 1] == target) || sum == target) {
             return true;
         }
         if (index == nums.length) {
